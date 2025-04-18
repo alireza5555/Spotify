@@ -20,19 +20,20 @@ public class User {
 
     UserBehavior behavior ;
 
-    void follow (User user){
+    public void follow (User user){
         followingList.add(user);
+        user.followerList.add(this);
     }
 
-    void createPlaylist (String title){
+     public void createPlaylist (String title){
         this.behavior.createPlaylist(title, this);
     }
 
-    void playMusic (Music music){
+    public void playMusic (Music music){
         this.behavior.playMusic(music);
     }
 
-    void buyPremium (int month){
+    public void buyPremium (int month){
         this.behavior = new PremiumBehavior(month);
     }
 
@@ -68,11 +69,4 @@ public class User {
         this.password = password;
     }
 
-    public void setFollowerList(ArrayList<User> followerList) {
-        this.followerList = followerList;
-    }
-
-    public void setFollowingList(ArrayList<User> followingList) {
-        this.followingList = followingList;
-    }
 }
