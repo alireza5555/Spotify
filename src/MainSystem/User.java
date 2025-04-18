@@ -15,7 +15,7 @@ public class User {
 
     private ArrayList<User> followerList = new ArrayList<>();
     private ArrayList<User> followingList = new ArrayList<>();
-    ArrayList<Playlist> playlists = new ArrayList<>();
+    protected ArrayList<Playlist> playlists = new ArrayList<>();
     static ArrayList<User> allUsers = new ArrayList<>();
 
     UserBehavior behavior ;
@@ -25,8 +25,9 @@ public class User {
         user.followerList.add(this);
     }
 
-     public void createPlaylist (String title){
+     public void createPlayList (String title){
         this.behavior.createPlaylist(title, this);
+
     }
 
     public void playMusic (Music music){
@@ -67,6 +68,15 @@ public class User {
             throw new InvalidOperationException("password length must be at least 8 or more");
         }
         this.password = password;
+    }
+
+    public Playlist getPlayList(String name){
+        for (Playlist temp : playlists){
+            if(temp.title.equals(name)){
+                return temp;
+            }
+        }
+        throw new InvalidOperationException("playlist with this name doesn't exist.");
     }
 
 }

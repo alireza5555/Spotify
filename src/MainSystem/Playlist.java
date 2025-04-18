@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Playlist {
 
-    public Playlist(String title , User owner){
+    protected Playlist(String title , User owner){
         this.owner = owner;
         this.title = title;
         playlist = new ArrayList<>();
@@ -79,6 +79,8 @@ public class Playlist {
             }
         }
     }
+
+
 
 
 
