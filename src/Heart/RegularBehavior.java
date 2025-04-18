@@ -19,4 +19,7 @@ public class RegularBehavior implements UserBehavior {
     public void buyPremium(User owner, int month) {
 
     }
+
+
+
 }
