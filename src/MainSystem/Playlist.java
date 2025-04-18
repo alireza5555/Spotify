@@ -1,9 +1,15 @@
-package Heart;
+package MainSystem;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Playlist {
+
+    public Playlist(String title , User owner){
+        this.owner = owner;
+        this.title = title;
+    }
+
     String title;
     User owner;
 
