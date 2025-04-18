@@ -11,8 +11,8 @@ public class Playlist {
         playlist = new ArrayList<>();
     }
 
-     String title;
-     User owner;
+     private String title;
+     private User owner;
 
     ArrayList<Music> playlist;
 
@@ -24,7 +24,7 @@ public class Playlist {
 
     public void addMusic (Music music,String pass) throws InvalidOperationException {
         for (Music temp : playlist){
-            if(music.title.equals(temp.title) && music.singer.getUsername().equals(temp.singer.getUsername()) ){
+            if(music.getTitle().equals(temp.getTitle()) && music.getSinger().getUsername().equals(temp.getSinger().getUsername()) ){
                 throw new InvalidOperationException("this music already exist");
             }
         }
@@ -37,7 +37,7 @@ public class Playlist {
     public void removeMusic (String title , String singer ,String pass) throws InvalidOperationException {
         if(checkPass(pass))
             for (int i = 0 ; i < playlist.size() ; i++){
-                if(playlist.get(i).title.equals(title) && playlist.get(i).singer.equals(singer)) {
+                if(playlist.get(i).getTitle().equals(title) && playlist.get(i).getSinger().equals(singer)) {
                     playlist.remove(i);
                     System.out.println("Deleted successfully");
                 }
@@ -52,7 +52,7 @@ public class Playlist {
     public ArrayList<Music> searchInPlaylist  (String music){
         ArrayList<Music> anotherTemp = new ArrayList<>();
         for (Music temp : playlist){
-            if(temp.title.equals(music)) anotherTemp.add(temp);
+            if(temp.getTitle().equals(music)) anotherTemp.add(temp);
         }
         if(anotherTemp.isEmpty())return null;
         return anotherTemp;
@@ -61,7 +61,7 @@ public class Playlist {
 
     public Music searchInPlaylist  (String music , String singer){
         for (Music temp : playlist){
-            if(temp.title.equals(music) && temp.singer.getUsername().equals(singer)) return temp;
+            if(temp.getTitle().equals(music) && temp.getSinger().getUsername().equals(singer)) return temp;
         }
         return null;
 
@@ -80,8 +80,19 @@ public class Playlist {
         }
     }
 
+    public User getOwner() {
+        return owner;
+    }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 }
