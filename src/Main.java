@@ -2,42 +2,46 @@ import MainSystem.*;
 
 public class Main {
     public static void main(String[] args) {
-        //tests:
+
+        // user tests:
 
         User alireza = null;
         User sara = null;
         try {
             alireza = new User("alireza", "10291029");
         } catch (Exception e) {
-            System.out.println("Wrong");
+            System.out.println("❌ ");
         }
 
         try {
             sara = new User("sara", "1111");
-            System.out.println(" Wrong");
+            System.out.println(" ❌ ");
         } catch (Exception e) {
-            System.out.println(e.getMessage() + "true");
+            System.out.println(e.getMessage() + "✅");
         }
 
         try {
             sara = new User("alireza", "1111111111");
-            System.out.println("Wrong");
+            System.out.println("❌ ");
         } catch (Exception e) {
-            System.out.println(e.getMessage() + "true");
+            System.out.println(e.getMessage() + "✅");
         }
         sara = new User("sara","12345678");
 
+            //Music tests:
 
         try {
             Music killShot = new Music("KillShot", alireza);
-            System.out.println("true");
+            System.out.println("✅");
         } catch (Exception e) {
-            System.out.println(e.getMessage() + " wrong");
+            System.out.println(e.getMessage() + " ❌ ");
 
         }
 
         Music another = new Music ("Faint", alireza);
         Music faint = new Music("Faint", sara);
+
+        //follower tests:
 
         sara.follow(alireza);
         alireza.follow(sara);
@@ -49,34 +53,7 @@ public class Main {
             System.out.println(temp.getUsername());
         }
 
-        Playlist playlist = new Playlist("rap",alireza);
-        playlist.addMusic(faint,"10291029");
-        playlist.addMusic(another,"10291029");
-
-        try{
-            playlist.addMusic(faint,"10291029");
-            System.out.println("Wrong");
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage() + " true");
-        }
-
-        try{
-            playlist.addMusic(faint,"1112222");
-            System.out.println("wrong");
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage() + " True");
-        }
-
-        for(Music temp : playlist.searchInPlaylist("Faint")){
-            temp.play();
-        }
-
-        playlist.removeMusic("Faint","sara","10291029");
-        playlist.editTitle("wtf","10291029");
-
-        playlist.playPlayList();
+        //play music tests:
 
         alireza.playMusic(faint);
         alireza.playMusic(faint);
@@ -90,6 +67,39 @@ public class Main {
         }
         alireza.buyPremium(2);
         alireza.playMusic(faint);
+
+        //playlist tests
+
+        alireza.createPlayList("rap");
+        Playlist playlist = alireza.getPlayList("rap");
+        playlist.addMusic(faint,"10291029");
+        playlist.addMusic(another,"10291029");
+
+        try{
+            playlist.addMusic(faint,"10291029");
+            System.out.println("❌ ");
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage() + " ✅");
+        }
+
+        try{
+            playlist.addMusic(faint,"1112222");
+            System.out.println("❌ ");
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage() + " ✅");
+        }
+
+        for(Music temp : playlist.searchInPlaylist("Faint")){
+            temp.play();
+        }
+
+        playlist.removeMusic("Faint","sara","10291029");
+        playlist.editTitle("wtf","10291029");
+
+        playlist.playPlayList();
+
 
     }
 }
