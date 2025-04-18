@@ -72,7 +72,7 @@ public class User {
 
     public Playlist getPlayList(String name){
         for (Playlist temp : playlists){
-            if(temp.title.equals(name)){
+            if(temp.getTitle().equals(name)){
                 return temp;
             }
         }
