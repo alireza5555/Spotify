@@ -11,8 +11,8 @@ public class Playlist {
         playlist = new ArrayList<>();
     }
 
-    String title;
-    User owner;
+     String title;
+     User owner;
 
     ArrayList<Music> playlist;
 
@@ -23,8 +23,8 @@ public class Playlist {
     }
 
     public void addMusic (Music music,String pass) throws InvalidOperationException {
-        for (Music temp : Music.allMusics){
-            if(music.title.equals(temp.title) && music.singer.equals(temp.singer) ){
+        for (Music temp : playlist){
+            if(music.title.equals(temp.title) && music.singer.getUsername().equals(temp.singer.getUsername()) ){
                 throw new InvalidOperationException("this music already exist");
             }
         }
@@ -49,7 +49,7 @@ public class Playlist {
         return owner.getPassword().equals(pass);
     }
 
-    public ArrayList<Music> search (String music){
+    public ArrayList<Music> searchInPlaylist  (String music){
         ArrayList<Music> anotherTemp = new ArrayList<>();
         for (Music temp : playlist){
             if(temp.title.equals(music)) anotherTemp.add(temp);
@@ -59,7 +59,7 @@ public class Playlist {
 
     }
 
-    public Music search (String music , String singer){
+    public Music searchInPlaylist  (String music , String singer){
         for (Music temp : playlist){
             if(temp.title.equals(music) && temp.singer.getUsername().equals(singer)) return temp;
         }
@@ -69,11 +69,11 @@ public class Playlist {
 
     public void playPlayList(){
         for (Music temp : playlist){
-            temp.play();
+            owner.playMusic(temp);
             System.out.println("if you want go to next music press 1 otherwise press any key to stop.");
             Scanner scn = new Scanner(System.in);
-            String str = scn.nextLine();
-            if(!(str.equals(1))) {
+            String str = scn.next();
+            if(!(str.equals("1"))) {
                 System.out.println("Play list has been stopped.");
                 return;
             }

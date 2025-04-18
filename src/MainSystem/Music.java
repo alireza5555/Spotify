@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Music {
 
     public Music (String title , User singer){
-        this.singer = singer;
-        this.title = title;
+            this.singer = singer;
+            this.title = title;
 
     }
 
@@ -17,7 +17,7 @@ public class Music {
     static ArrayList<Music> allMusics = new ArrayList<>();
 
     public void play (){
-        System.out.println("\uD83C\uDFB5 Now Playing: " + title + "   Singer: " + singer + "\n" +
+        System.out.println("\uD83C\uDFB5 Now Playing: " + title + "   Singer: " + singer.getUsername() + "   number of stream: " + numberOfStream + "\n" +
                 "[■■■■■■■■■□□□□□□]");
         numberOfStream ++ ;
     }
