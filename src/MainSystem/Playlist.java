@@ -1,9 +1,16 @@
-package Heart;
+package MainSystem;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Playlist {
+
+    public Playlist(String title , User owner){
+        this.owner = owner;
+        this.title = title;
+        playlist = new ArrayList<>();
+    }
+
     String title;
     User owner;
 
@@ -16,6 +23,12 @@ public class Playlist {
     }
 
     public void addMusic (Music music,String pass) throws InvalidOperationException {
+        for (Music temp : Music.allMusics){
+            if(music.title.equals(temp.title) && music.singer.equals(temp.singer) ){
+                throw new InvalidOperationException("this music already exist");
+            }
+        }
+
         if(checkPass(pass))
             playlist.add(music);
         else throw new InvalidOperationException("Wrong password");
@@ -41,6 +54,7 @@ public class Playlist {
         for (Music temp : playlist){
             if(temp.title.equals(music)) anotherTemp.add(temp);
         }
+        if(anotherTemp.isEmpty())return null;
         return anotherTemp;
 
     }
