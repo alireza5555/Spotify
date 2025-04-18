@@ -24,16 +24,16 @@ public class User {
         followingList.add(user);
     }
 
-    void createPlaylist (String title, User owner){
-        this.behavior.createPlaylist(title, owner);
+    void createPlaylist (String title){
+        this.behavior.createPlaylist(title, this);
     }
 
     void playMusic (Music music){
         this.behavior.playMusic(music);
     }
 
-    void buyPremium (User owner , int month){
-        this.behavior.buyPremium(owner , month);
+    void buyPremium (int month){
+        this.behavior = new PremiumBehavior(month);
     }
 
     public String getUsername() {
